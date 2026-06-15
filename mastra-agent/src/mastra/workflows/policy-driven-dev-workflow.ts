@@ -64,8 +64,8 @@ Please address all issues, update the code, write/fix tests, and update the chan
       complianceReport = validationResult.text;
       reviewVerdict = reviewResult.text;
 
-      const isCompliant = !complianceReport.includes('COMPLIANCE STATUS: NON-COMPLIANT');
-      const reviewPassed = !reviewVerdict.includes('VERDICT: CHANGES_REQUIRED');
+      const isCompliant = complianceReport.includes('COMPLIANCE STATUS: COMPLIANT');
+      const reviewPassed = reviewVerdict.includes('VERDICT: APPROVED');
 
       if (isCompliant && reviewPassed) {
         success = true;
