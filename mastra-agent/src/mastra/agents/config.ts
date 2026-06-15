@@ -6,4 +6,4 @@ const githubModels = createOpenAI({
   compatibility: 'compatible',
 });
 
-export const AGENT_MODEL = githubModels('gpt-4o-mini');
+export const AGENT_MODEL = githubModels.chat('gpt-4o-mini');
