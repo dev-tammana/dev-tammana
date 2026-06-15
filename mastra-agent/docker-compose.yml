@@ -22,6 +22,8 @@ services:
       - OPENAI_API_KEY=${OPENAI_API_KEY}
       - GOOGLE_API_KEY=${GOOGLE_API_KEY}
       - GOOGLE_GENERATIVE_AI_API_KEY=${GOOGLE_GENERATIVE_AI_API_KEY}
+      - GROQ_API_KEY=${GROQ_API_KEY}
+      - GITHUB_TOKEN=${GITHUB_TOKEN}
       - QDRANT_URL=http://qdrant:6333
     depends_on:
       - qdrant

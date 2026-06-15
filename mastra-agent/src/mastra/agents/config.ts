@@ -1,2 +1,8 @@
-// Centralized model configuration for all Mastra Agents
-export const AGENT_MODEL = 'groq/llama-3.1-8b-instant';
+import { createOpenAI } from '@ai-sdk/openai';
+
+const githubModels = createOpenAI({
+  baseURL: 'https://models.inference.ai.azure.com',
+  apiKey: process.env.GITHUB_TOKEN,
+});
+
+export const AGENT_MODEL = githubModels('gpt-4o-mini');
