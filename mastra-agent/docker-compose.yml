@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  qdrant:
+    image: qdrant/qdrant:latest
+    container_name: qdrant-db-mastra
+    ports:
+      - "6335:6333"
+    volumes:
+      - qdrant_storage_mastra:/qdrant/storage
+    restart: always
+
+  mastra:
+    build: .
+    container_name: mastra-agent-app
+    ports:
+      - "4000:4000"
+      - "5678:5678"
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - QDRANT_URL=http://qdrant:6333
+    depends_on:
+      - qdrant
+    restart: always
+
+volumes:
+  qdrant_storage_mastra:
