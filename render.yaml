@@ -1,0 +1,22 @@
+services:
+  # Qdrant Vector Database (Private Service)
+  - type: pserv
+    name: qdrant-db
+    env: docker
+    dockerImage: qdrant/qdrant:latest
+    plan: free
+
+  # Mastra Agent UI & API (Public Web Service)
+  - type: web
+    name: mastra-agent
+    env: docker
+    dockerfilepath: mastra-agent/Dockerfile
+    dockercontext: mastra-agent
+    plan: free
+    envVars:
+      - key: GOOGLE_API_KEY
+        sync: false
+      - key: GOOGLE_GENERATIVE_AI_API_KEY
+        sync: false
+      - key: QDRANT_URL
+        value: http://qdrant-db:6333
