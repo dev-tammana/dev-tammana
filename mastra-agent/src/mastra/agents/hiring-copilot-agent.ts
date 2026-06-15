@@ -10,5 +10,5 @@ When given a candidate's resume and a target job description:
 3. Identify Skill Gaps or missing qualifications.
 4. Formulate specific screening questions for the candidate to address those gaps.
 Keep your evaluation highly structured, professional, and objective.`,
-  model: 'openai/gpt-4o',
+  model: 'google/gemini-1.5-flash',
 });

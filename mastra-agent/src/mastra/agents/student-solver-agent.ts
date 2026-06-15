@@ -10,5 +10,5 @@ When given a homework query, formula, or snippet:
 3. List the underlying formulas, theories, or concepts used.
 4. Formulate a similar challenge question for the student to practice.
 Maintain an encouraging, educational, and easy-to-understand tone.`,
-  model: 'openai/gpt-4o',
+  model: 'google/gemini-1.5-flash',
 });

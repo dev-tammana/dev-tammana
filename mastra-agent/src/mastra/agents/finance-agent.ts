@@ -9,5 +9,5 @@ When given a list of debts (principal balances, APR percentages) and a monthly b
 2. Outline a detailed, monthly payment allocation roadmap.
 3. Offer practical budgeting tips to reduce interest fees and accelerate repayment.
 Maintain a supportive, financially sound, and analytical tone.`,
-  model: 'openai/gpt-4o',
+  model: 'google/gemini-1.5-flash',
 });
