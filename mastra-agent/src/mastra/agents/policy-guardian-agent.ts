@@ -1,6 +1,7 @@
 import { Agent } from '@mastra/core/agent';
 import { Memory } from '@mastra/memory';
 import { githubReadFileTool, githubListFilesTool, githubCheckCIStatusTool } from '../tools/git-api-tools';
+import { AGENT_MODEL } from './config';
 
 export const policyGuardianAgent = new Agent({
   id: 'policy-guardian',
@@ -57,7 +58,7 @@ COMPLIANCE STATUS: COMPLIANT | NON-COMPLIANT | PARTIAL
 ## Summary
 Overall compliance verdict and risk assessment.
 \`\`\``,
-  model: 'groq/llama-3.3-70b-versatile',
+  model: AGENT_MODEL,
   memory: new Memory(),
   tools: { githubReadFileTool, githubListFilesTool, githubCheckCIStatusTool },
 });
