@@ -1,4 +1,6 @@
 import { Agent } from '@mastra/core/agent';
+import { Memory } from '@mastra/memory';
+import { fetchWebPageTool } from '../tools/fetch-tool';
 
 export const financeAgent = new Agent({
   id: 'finance-agent',
@@ -8,6 +10,10 @@ When given a list of debts (principal balances, APR percentages) and a monthly b
 1. Compare Debt Avalanche (paying highest interest first) and Debt Snowball (paying lowest balance first) strategies for their scenario.
 2. Outline a detailed, monthly payment allocation roadmap.
 3. Offer practical budgeting tips to reduce interest fees and accelerate repayment.
-Maintain a supportive, financially sound, and analytical tone.`,
+Maintain a supportive, financially sound, and analytical tone.
+
+You have access to the fetchWebPageTool to lookup current interest rates or federal advisory details when urls are supplied.`,
   model: 'google/gemini-1.5-flash',
+  memory: new Memory(),
+  tools: { fetchWebPageTool },
 });

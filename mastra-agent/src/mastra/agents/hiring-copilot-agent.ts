@@ -1,4 +1,6 @@
 import { Agent } from '@mastra/core/agent';
+import { Memory } from '@mastra/memory';
+import { fetchWebPageTool } from '../tools/fetch-tool';
 
 export const hiringCopilotAgent = new Agent({
   id: 'hiring-copilot-agent',
@@ -9,6 +11,10 @@ When given a candidate's resume and a target job description:
 2. Highlight Core Strengths matched between the resume and job requirements.
 3. Identify Skill Gaps or missing qualifications.
 4. Formulate specific screening questions for the candidate to address those gaps.
-Keep your evaluation highly structured, professional, and objective.`,
+Keep your evaluation highly structured, professional, and objective.
+
+You have access to the fetchWebPageTool to gather public candidate profiles or job description rules from links when provided.`,
   model: 'google/gemini-1.5-flash',
+  memory: new Memory(),
+  tools: { fetchWebPageTool },
 });
