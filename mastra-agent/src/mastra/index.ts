@@ -15,6 +15,9 @@ import { hiringCopilotAgent } from './agents/hiring-copilot-agent';
 import { financeAgent } from './agents/finance-agent';
 import { legalAgent } from './agents/legal-agent';
 import { studentSolverAgent } from './agents/student-solver-agent';
+import { policyGuardianAgent } from './agents/policy-guardian-agent';
+import { codeReviewerAgent } from './agents/code-reviewer-agent';
+import { codeGeneratorAgent } from './agents/code-generator-agent';
 
 export const mastra = new Mastra({
   workflows: { weatherWorkflow },
@@ -23,7 +26,10 @@ export const mastra = new Mastra({
     'hiring-copilot-agent': hiringCopilotAgent,
     'finance-agent': financeAgent,
     'legal-agent': legalAgent,
-    'student-solver-agent': studentSolverAgent
+    'student-solver-agent': studentSolverAgent,
+    'policy-guardian': policyGuardianAgent,
+    'code-reviewer': codeReviewerAgent,
+    'code-generator': codeGeneratorAgent
   },
   scorers: { toolCallAppropriatenessScorer, completenessScorer, translationScorer },
   storage: new MastraCompositeStore({
