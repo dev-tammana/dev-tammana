@@ -19,11 +19,11 @@ import { studentSolverAgent } from './agents/student-solver-agent';
 export const mastra = new Mastra({
   workflows: { weatherWorkflow },
   agents: { 
-    weatherAgent,
-    hiringCopilotAgent,
-    financeAgent,
-    legalAgent,
-    studentSolverAgent
+    'weather-agent': weatherAgent,
+    'hiring-copilot-agent': hiringCopilotAgent,
+    'finance-agent': financeAgent,
+    'legal-agent': legalAgent,
+    'student-solver-agent': studentSolverAgent
   },
   scorers: { toolCallAppropriatenessScorer, completenessScorer, translationScorer },
   storage: new MastraCompositeStore({
