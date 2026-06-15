@@ -1,68 +1,74 @@
-# Hi there, I'm Tamanna Patel 👋
+<h1 align="center">Hi there, I'm Tamanna Patel 👋</h1>
+<p align="center">
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=24&pause=1000&color=00F2FE&width=435&lines=Software+Engineer;Full-Stack+Web+Developer;AI+%26+RAG+Engineer;Problem+Solver" alt="Typing SVG" />
+</p>
 
-### Software Engineer • Full-Stack Web Developer • AI & RAG Engineer
+<p align="center">
+  <a href="mailto:Tamannapatel807@gmail.com"><img src="https://img.shields.io/badge/Email-Tamannapatel807%40gmail.com-blue?style=for-the-badge&logo=gmail&logoColor=white&color=00f2fe" alt="Email" /></a>
+  <a href="tel:+917715963643"><img src="https://img.shields.io/badge/Phone-%2B91--7715963643-purple?style=for-the-badge&logo=whatsapp&logoColor=white&color=9d4edd" alt="Phone" /></a>
+  <a href="https://github.com/dev-tammana/profile"><img src="https://img.shields.io/badge/Portfolio-Live%20Demo-green?style=for-the-badge&logo=google-chrome&logoColor=white&color=0070f3" alt="Portfolio" /></a>
+</p>
 
-Experienced Software Engineer with over 2+ years of expertise designing and delivering production-grade web applications across **pharmaceutical**, **medical**, and **fintech** sectors. Proficient across the full development stack — from building polished, responsive React/Angular UIs to creating high-performance Python (FastAPI) backends and intelligent RAG-based document retrieval systems.
+<br/>
 
 ---
 
-### 🚀 Technical Expertise
+### 💫 About Me
+Results-driven **Software Engineer** with over 2 years of experience designing and delivering scalable, production-grade applications across **Pharmaceutical, Medical, and Fintech** sectors. Expert in building domain-specific platforms including pharma field-force systems, KYC onboarding portals, and intelligent **RAG-based document retrieval pipelines**. 
 
-<details>
-<summary><b>🛠️ Languages & Frameworks</b></summary>
-<br>
+---
 
-| Domain | Technologies |
-| :--- | :--- |
-| **Frontend** | React.js, Angular, Next.js, JavaScript (ES6+), TypeScript, HTML5, CSS3 |
-| **Backend** | Python, FastAPI, RESTful API design, Node.js |
-| **Databases** | MongoDB, PostgreSQL, pgvector (vector similarity search) |
-| **Tools / Practices** | Git, Postman, VS Code, Agile/Scrum, Debugging & Performance Optimization |
+### 🛠️ Tech Stack & Skills
 
-</details>
+<p align="left">
+  <!-- Frontend -->
+  <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" />
+  <img src="https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white" />
+  <img src="https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white" />
+  <img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white" />
+  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" />
+  <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white" />
+  <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white" />
+</p>
 
-<details>
-<summary><b>🧠 AI / RAG & Industry Specialization</b></summary>
-<br>
-
-* **AI & LLM Integration:** Retrieval-Augmented Generation (RAG), vector embeddings, document chunking & indexing pipelines, semantic search.
-* **Pharma / Healthcare Tech:** Field-force management systems (daily call reports, tour planning), drug master databases, regulatory document workflows (HIPAA compliance), batch traceability.
-* **Fintech & Security:** Digitized KYC onboarding portals, multi-step validation forms, OCR and identity check integrations, JWT role-based access control.
-
-</details>
+<p align="left">
+  <!-- Backend & DB -->
+  <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" />
+  <img src="https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white" />
+  <img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white" />
+  <img src="https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white" />
+  <img src="https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white" />
+  <img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white" />
+</p>
 
 ---
 
 ### 💻 Key Projects
 
-#### [🤖 PDF Classification (RAG-Based Medical Document Retrieval)](https://github.com/dev-tammana/profile)
-* **Description:** Built a Retrieval-Augmented Generation (RAG) system to intelligently classify and search medical PDF documents.
-* **Tech Stack:** Python, FastAPI, React.js, pgvector, MongoDB Atlas.
-* **Key Achievement:** Ingestion pipeline extracting embeddings, enabling medical staff to perform semantic search, reducing document retrieval time by 70% in tests.
+📂 **Medical PDF Ingestion & Classification System (AI / RAG)**
+> A RAG platform designed to search and classify clinical records, prescriptions, and lab reports. Achieved a **70% reduction in document retrieval time** in tests using async embeddings queue and Vector Databases.
+> <br/>*Python | FastAPI | React.js | pgvector | MongoDB Atlas*
 
-#### [🏥 Fieldtrix – Pharma Field Force Management](https://github.com/dev-tammana/profile)
-* **Description:** A comprehensive enterprise platform enabling Medical Representatives (MRs) to log visits, track inventory, and submit daily reports.
-* **Tech Stack:** FastAPI, PostgreSQL, React.js.
-* **Key Achievement:** Integrated real-time synchronization between agents and operations with geo-tagged visit validation under HIPAA-compliant practices.
+📂 **Fieldtrix – Pharma Field Force Management System**
+> Comprehensive tool for MRs to manage schedules, track doctor/chemist visits, sample inventory, and daily call reports under strict HIPAA guidelines.
+> <br/>*FastAPI | PostgreSQL | React.js | GeoJSON*
 
-#### [💳 EFT – KYC & Identity Verification System](https://github.com/dev-tammana/profile)
-* **Description:** Designed an end-to-end identity check and digital onboarding application for financial services.
-* **Tech Stack:** React.js, FastAPI, JWT.
-* **Key Achievement:** Multi-step wizard forms, third-party verification API integrations, and role-based officer dashboard with automated risk scoring.
+📂 **EFT – KYC & Identity Verification System**
+> Secure digital onboarding portal featuring live verification, ID OCR checks, and automated risk scoring based on RBI/SEBI security rules.
+> <br/>*React.js | FastAPI | JWT | Third-party OCR APIs*
 
 ---
 
-### 📜 Certifications & AI Credentials
+### 📊 GitHub Stats
 
-* 🥇 **Claude Code 101** — Anthropic's agentic CLI tool, workflow optimization.
-* 🥇 **Model Context Protocol (MCP): Advanced Topics** — Context windows & custom tools.
-* 🥇 **Introduction to MCP** — Basic communication schemas and context architecture.
-* 🥇 **AI Fluency: Capabilities & Limitations** — Bias-reduction and validation pipelines.
+<p align="center">
+  <img src="https://github-readme-stats.vercel.app/api?username=dev-tammana&show_icons=true&theme=tokyonight&count_private=true" alt="Tamanna's GitHub Stats" />
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=dev-tammana&layout=compact&theme=tokyonight" alt="Top Languages" />
+</p>
 
 ---
 
-### 📬 Let's Connect!
-
-* 📧 **Email:** [Tamannapatel807@gmail.com](mailto:Tamannapatel807@gmail.com)
-* 📞 **Phone:** +91-7715963643
-* 📍 **Location:** Mumbai, India
+### 📜 Featured Credentials
+* 🏆 **Claude Code 101** — Anthropic (AI-assisted coding workflows)
+* 🏆 **Model Context Protocol (MCP)** — Anthropic (Advanced context structure & custom tools)
+* 🏆 **AI Fluency Foundations** — Anthropic (Validation pipelines & responsible usage)
