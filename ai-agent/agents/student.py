@@ -31,11 +31,17 @@ class StudentSolvingAgent:
             }
 
         try:
-            from mistralai.models.chat_completion import ChatMessage
-            response = self.client.chat(
-                model="mistral-tiny",
-                messages=[ChatMessage(role="user", content=prompt)]
-            )
+            if hasattr(self.client, "chat") and hasattr(self.client.chat, "complete"):
+                response = self.client.chat.complete(
+                    model="mistral-tiny",
+                    messages=[{"role": "user", "content": prompt}]
+                )
+            else:
+                from mistralai.models.chat_completion import ChatMessage
+                response = self.client.chat(
+                    model="mistral-tiny",
+                    messages=[ChatMessage(role="user", content=prompt)]
+                )
             analysis = response.choices[0].message.content
             return {"solution": analysis, "status": "processed"}
         except Exception as e:

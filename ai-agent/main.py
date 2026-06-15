@@ -7,8 +7,12 @@ from dotenv import load_dotenv
 import requests
 from qdrant_client import QdrantClient
 from qdrant_client.http import models as qdrant_models
-from mistralai.client import MistralClient
-from mistralai.models.chat_completion import ChatMessage
+
+# Compatibility import for Mistral AI SDK
+try:
+    from mistralai import Mistral
+except ImportError:
+    from mistralai.client import Mistral
 
 # Import Specialized Agents
 from agents.hiring_copilot import HiringCopilotAgent
@@ -33,7 +37,7 @@ QDRANT_PORT = int(os.getenv("QDRANT_PORT", "6333"))
 
 # Initialize clients
 qdrant_client = QdrantClient(host=QDRANT_HOST, port=QDRANT_PORT)
-mistral_client = MistralClient(api_key=MISTRAL_API_KEY) if MISTRAL_API_KEY else None
+mistral_client = Mistral(api_key=MISTRAL_API_KEY) if MISTRAL_API_KEY else None
 
 COLLECTION_NAME = "knowledge_base"
 
@@ -143,11 +147,23 @@ def setup_qdrant():
 def get_embedding(text: str) -> List[float]:
     if not mistral_client:
         return [0.1] * 1024
-    response = mistral_client.embeddings(
-        model="mistral-embed",
-        input=[text]
-    )
-    return response.data[0].embedding
+    
+    try:
+        # Compatibility check for new client.embeddings.create vs legacy client.embeddings
+        if hasattr(mistral_client, "embeddings") and hasattr(mistral_client.embeddings, "create"):
+            response = mistral_client.embeddings.create(
+                model="mistral-embed",
+                inputs=[text]
+            )
+        else:
+            response = mistral_client.embeddings(
+                model="mistral-embed",
+                input=[text]
+            )
+        return response.data[0].embedding
+    except Exception as e:
+        logger.error(f"Embedding generation failed: {e}")
+        return [0.1] * 1024
 
 
 # --- Core RAG Endpoints ---
@@ -216,10 +232,17 @@ def run_agent(request: QueryRequest):
         )
     else:
         try:
-            chat_response = mistral_client.chat(
-                model="mistral-tiny",
-                messages=[ChatMessage(role="user", content=prompt)]
-            )
+            # Compatibility check for new client.chat.complete vs legacy client.chat
+            if hasattr(mistral_client, "chat") and hasattr(mistral_client.chat, "complete"):
+                chat_response = mistral_client.chat.complete(
+                    model="mistral-tiny",
+                    messages=[{"role": "user", "content": prompt}]
+                )
+            else:
+                chat_response = mistral_client.chat(
+                    model="mistral-tiny",
+                    messages=[ChatMessage(role="user", content=prompt)]
+                )
             llm_response = chat_response.choices[0].message.content
         except Exception as e:
             logger.error(f"Mistral LLM call failed: {e}")
@@ -238,7 +261,6 @@ def run_agent(request: QueryRequest):
 
 @app.post("/agent/hiring")
 def run_hiring_copilot(req: HiringRequest):
-    # Safe input verification
     guardrail = verify_with_enkrypt(req.resume_text + " " + req.job_description)
     if not guardrail.get("safe", True):
         raise HTTPException(status_code=400, detail=f"Request Blocked: {guardrail.get('reason')}")
@@ -248,7 +270,6 @@ def run_hiring_copilot(req: HiringRequest):
 
 @app.post("/agent/finance")
 def run_finance_adviser(req: FinanceRequest):
-    # Safe input verification
     debt_summary = " ".join([d.get("name", "") for d in req.debts])
     guardrail = verify_with_enkrypt(debt_summary)
     if not guardrail.get("safe", True):
@@ -259,7 +280,6 @@ def run_finance_adviser(req: FinanceRequest):
 
 @app.post("/agent/legal")
 def run_legal_reviewer(req: LegalRequest):
-    # Safe input verification
     guardrail = verify_with_enkrypt(req.contract_text)
     if not guardrail.get("safe", True):
         raise HTTPException(status_code=400, detail=f"Request Blocked: {guardrail.get('reason')}")
@@ -269,7 +289,6 @@ def run_legal_reviewer(req: LegalRequest):
 
 @app.post("/agent/student")
 def run_student_solver(req: StudentRequest):
-    # Safe input verification
     guardrail = verify_with_enkrypt(req.problem_description)
     if not guardrail.get("safe", True):
         raise HTTPException(status_code=400, detail=f"Request Blocked: {guardrail.get('reason')}")
