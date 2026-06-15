@@ -1,6 +1,34 @@
 import { createStep, createWorkflow } from '@mastra/core/workflows';
 import { z } from 'zod';
 
+const generateCodeStep = createStep({
+  id: 'generate-code',
+  description: 'Implements the feature on GitHub using the Code Generator agent.',
+  inputSchema: z.object({
+    prompt: z.string().describe('The feature or code change request.'),
+  }),
+  outputSchema: z.object({
+    generationLog: z.string(),
+    success: z.boolean(),
+    prompt: z.string(),
+  }),
+  execute: async ({ inputData, mastra }) => {
+    if (!inputData) throw new Error('No input data provided');
+
+    const agent = mastra?.getAgent('code-generator');
+    if (!agent) throw new Error('Code Generator agent not found');
+
+    const promptText = `Implement the following feature directly on GitHub using your tools. Make sure to commit each logical change, update contracts first, write tests, and update logs/change.log: \n\n${inputData.prompt}`;
+    const result = await agent.generate(promptText);
+
+    return {
+      generationLog: result.text,
+      success: true,
+      prompt: inputData.prompt,
+    };
+  },
+});
+
 const validatePolicyStep = createStep({
   id: 'validate-policy',
   description: 'Validates feature plan compliance using the Policy Guardian agent.',
@@ -29,40 +57,6 @@ const validatePolicyStep = createStep({
   },
 });
 
-const generateCodeStep = createStep({
-  id: 'generate-code',
-  description: 'Implements the feature on GitHub using the Code Generator agent.',
-  inputSchema: z.object({
-    prompt: z.string(),
-    complianceReport: z.string(),
-    isCompliant: z.boolean(),
-  }),
-  outputSchema: z.object({
-    generationLog: z.string(),
-    success: z.boolean(),
-  }),
-  execute: async ({ inputData, mastra }) => {
-    if (!inputData) throw new Error('No input data provided');
-    if (!inputData.isCompliant) {
-      return {
-        generationLog: `Skipped code generation because Policy Guardian flagged compliance issues:\n${inputData.complianceReport}`,
-        success: false,
-      };
-    }
-
-    const agent = mastra?.getAgent('code-generator');
-    if (!agent) throw new Error('Code Generator agent not found');
-
-    const promptText = `Implement the following feature directly on GitHub using your tools. Make sure to commit each logical change, update contracts first, write tests, and update logs/change.log: \n\n${inputData.prompt}`;
-    const result = await agent.generate(promptText);
-
-    return {
-      generationLog: result.text,
-      success: true,
-    };
-  },
-});
-
 const reviewCodeStep = createStep({
   id: 'review-code',
   description: 'Audits the committed code and checks test execution via GitHub Actions.',
@@ -73,6 +67,7 @@ const reviewCodeStep = createStep({
   outputSchema: z.object({
     reviewVerdict: z.string(),
     success: z.boolean(),
+    generationLog: z.string(),
   }),
   execute: async ({ inputData, mastra }) => {
     if (!inputData) throw new Error('No input data provided');
@@ -80,6 +75,7 @@ const reviewCodeStep = createStep({
       return {
         reviewVerdict: 'Skipped code review because generation was not completed.',
         success: false,
+        generationLog: inputData.generationLog,
       };
     }
 
@@ -92,6 +88,42 @@ const reviewCodeStep = createStep({
     return {
       reviewVerdict: result.text,
       success: !result.text.includes('VERDICT: CHANGES_REQUIRED'),
+      generationLog: inputData.generationLog,
+    };
+  },
+});
+
+const mergeResultsStep = createStep({
+  id: 'merge-results',
+  description: 'Merges parallel compliance validation and code review results.',
+  inputSchema: z.object({
+    'validate-policy': z.object({
+      complianceReport: z.string(),
+      isCompliant: z.boolean(),
+    }),
+    'review-code': z.object({
+      reviewVerdict: z.string(),
+      success: z.boolean(),
+      generationLog: z.string(),
+    }),
+  }),
+  outputSchema: z.object({
+    complianceReport: z.string(),
+    generationLog: z.string(),
+    reviewVerdict: z.string(),
+    success: z.boolean(),
+  }),
+  execute: async ({ inputData }) => {
+    if (!inputData) throw new Error('No input data provided');
+
+    const validation = inputData['validate-policy'];
+    const review = inputData['review-code'];
+
+    return {
+      complianceReport: validation?.complianceReport || '',
+      generationLog: review?.generationLog || '',
+      reviewVerdict: review?.reviewVerdict || '',
+      success: !!(validation?.isCompliant && review?.success),
     };
   },
 });
@@ -108,8 +140,11 @@ export const policyDrivenDevWorkflow = createWorkflow({
     success: z.boolean(),
   }),
 })
-  .then(validatePolicyStep)
   .then(generateCodeStep)
-  .then(reviewCodeStep);
+  .parallel([
+    validatePolicyStep,
+    reviewCodeStep
+  ])
+  .then(mergeResultsStep);
 
 policyDrivenDevWorkflow.commit();
