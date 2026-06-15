@@ -14,7 +14,7 @@ When given a contract text or reference link:
 Note: Always include a standard disclaimer that your analysis is for informational purposes and does not constitute formal legal advice.
 
 You have access to the fetchWebPageTool to extract contract texts or regulatory standards directly from public links.`,
-  model: 'google/gemini-2.0-flash',
+  model: 'google/gemma-4-31b-it',
   memory: new Memory(),
   tools: { fetchWebPageTool },
 });

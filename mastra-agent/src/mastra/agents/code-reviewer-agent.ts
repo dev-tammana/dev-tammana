@@ -37,7 +37,7 @@ VERDICT: APPROVED | CHANGES_REQUIRED
 ## Summary
 Short paragraph with overall assessment.
 \`\`\``,
-  model: 'google/gemini-1.5-flash',
+  model: 'google/gemma-4-31b-it',
   memory: new Memory(),
   tools: { githubReadFileTool, githubListFilesTool, githubCheckCIStatusTool },
 });
