@@ -7,6 +7,7 @@ import { Observability, MastraStorageExporter, MastraPlatformExporter, Sensitive
 
 // Default Weather template items
 import { weatherWorkflow } from './workflows/weather-workflow';
+import { policyDrivenDevWorkflow } from './workflows/policy-driven-dev-workflow';
 import { weatherAgent } from './agents/weather-agent';
 import { toolCallAppropriatenessScorer, completenessScorer, translationScorer } from './scorers/weather-scorer';
 
@@ -20,7 +21,7 @@ import { codeReviewerAgent } from './agents/code-reviewer-agent';
 import { codeGeneratorAgent } from './agents/code-generator-agent';
 
 export const mastra = new Mastra({
-  workflows: { weatherWorkflow },
+  workflows: { weatherWorkflow, 'policy-driven-dev-workflow': policyDrivenDevWorkflow },
   agents: { 
     'weather-agent': weatherAgent,
     'hiring-copilot-agent': hiringCopilotAgent,
