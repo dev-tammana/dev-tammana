@@ -14,8 +14,10 @@ services:
     build: .
     container_name: mastra-agent-app
     ports:
-      - "4000:4000"
-      - "5678:5678"
+      - "4111:4111"
+    volumes:
+      - .:/app
+      - /app/node_modules
     environment:
       - OPENAI_API_KEY=${OPENAI_API_KEY}
       - QDRANT_URL=http://qdrant:6333
