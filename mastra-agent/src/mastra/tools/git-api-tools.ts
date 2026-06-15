@@ -6,7 +6,7 @@ const getGitConfig = () => {
   return {
     token: process.env.GITHUB_TOKEN || process.env.GOOGLE_API_KEY || '', // Fallback or user placeholder
     owner: process.env.GIT_REPO_OWNER || 'Chief-Strategist-J',
-    repo: process.env.GIT_REPO_NAME || 'llm-observability-platform',
+    repo: process.env.GIT_REPO_NAME || 'demo-factorial-module',
     defaultBranch: process.env.GIT_DEFAULT_BRANCH || 'main',
   };
 };
