@@ -1,7 +1,6 @@
 import { Agent } from '@mastra/core/agent';
 import { Memory } from '@mastra/memory';
 import { fetchWebPageTool } from '../tools/fetch-tool';
-import { agentModel } from './model';
 
 export const financeAgent = new Agent({
   id: 'finance-agent',
@@ -14,7 +13,7 @@ When given a list of debts (principal balances, APR percentages) and a monthly b
 Maintain a supportive, financially sound, and analytical tone.
 
 You have access to the fetchWebPageTool to lookup current interest rates or federal advisory details when urls are supplied.`,
-  model: agentModel,
+  model: 'groq/llama-3.3-70b-versatile',
   memory: new Memory(),
   tools: { fetchWebPageTool },
 });

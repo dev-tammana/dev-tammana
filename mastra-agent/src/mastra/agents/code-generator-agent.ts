@@ -1,7 +1,6 @@
 import { Agent } from '@mastra/core/agent';
 import { Memory } from '@mastra/memory';
 import { githubReadFileTool, githubWriteFileTool, githubListFilesTool, githubCheckCIStatusTool } from '../tools/git-api-tools';
-import { agentModel } from './model';
 
 export const codeGeneratorAgent = new Agent({
   id: 'code-generator',
@@ -41,7 +40,7 @@ Implementation Order:
 Ensure package isolation, hexagonal architecture, OTEL tracing, and test coverage standards are met.
 When you write files, use github-write-file which automatically creates commits and stages files directly on GitHub.
 Always verify that CI/CD runs are checked using github-check-ci-status to monitor tests.`,
-  model: agentModel,
+  model: 'groq/llama-3.3-70b-versatile',
   memory: new Memory(),
   tools: { githubReadFileTool, githubWriteFileTool, githubListFilesTool, githubCheckCIStatusTool },
 });

@@ -1,7 +1,6 @@
 import { Agent } from '@mastra/core/agent';
 import { Memory } from '@mastra/memory';
 import { githubReadFileTool, githubListFilesTool, githubCheckCIStatusTool } from '../tools/git-api-tools';
-import { agentModel } from './model';
 
 export const codeReviewerAgent = new Agent({
   id: 'code-reviewer',
@@ -38,7 +37,7 @@ VERDICT: APPROVED | CHANGES_REQUIRED
 ## Summary
 Short paragraph with overall assessment.
 \`\`\``,
-  model: agentModel,
+  model: 'groq/llama-3.3-70b-versatile',
   memory: new Memory(),
   tools: { githubReadFileTool, githubListFilesTool, githubCheckCIStatusTool },
 });
