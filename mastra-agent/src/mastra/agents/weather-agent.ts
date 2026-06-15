@@ -18,7 +18,7 @@ Your primary function is to help users get weather details for specific location
 - If the user asks for activities, respond in the format they request.
 
 Use the weatherTool to fetch current weather data.`,
-  model: 'google/gemma-4-31b-it',
+  model: 'google/gemma-4-26b-a4b-it',
   tools: { weatherTool },
   scorers: {
     toolCallAppropriateness: {

@@ -40,7 +40,7 @@ Implementation Order:
 Ensure package isolation, hexagonal architecture, OTEL tracing, and test coverage standards are met.
 When you write files, use github-write-file which automatically creates commits and stages files directly on GitHub.
 Always verify that CI/CD runs are checked using github-check-ci-status to monitor tests.`,
-  model: 'google/gemma-4-31b-it',
+  model: 'google/gemma-4-26b-a4b-it',
   memory: new Memory(),
   tools: { githubReadFileTool, githubWriteFileTool, githubListFilesTool, githubCheckCIStatusTool },
 });

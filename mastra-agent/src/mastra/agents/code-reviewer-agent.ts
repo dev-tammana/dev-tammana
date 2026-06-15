@@ -37,7 +37,7 @@ VERDICT: APPROVED | CHANGES_REQUIRED
 ## Summary
 Short paragraph with overall assessment.
 \`\`\``,
-  model: 'google/gemma-4-31b-it',
+  model: 'google/gemma-4-26b-a4b-it',
   memory: new Memory(),
   tools: { githubReadFileTool, githubListFilesTool, githubCheckCIStatusTool },
 });

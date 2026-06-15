@@ -57,7 +57,7 @@ COMPLIANCE STATUS: COMPLIANT | NON-COMPLIANT | PARTIAL
 ## Summary
 Overall compliance verdict and risk assessment.
 \`\`\``,
-  model: 'google/gemma-4-31b-it',
+  model: 'google/gemma-4-26b-a4b-it',
   memory: new Memory(),
   tools: { githubReadFileTool, githubListFilesTool, githubCheckCIStatusTool },
 });
