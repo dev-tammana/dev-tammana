@@ -1,6 +1,7 @@
 import { Agent } from '@mastra/core/agent';
 import { Memory } from '@mastra/memory';
 import { fetchWebPageTool } from '../tools/fetch-tool';
+import { agentModel } from './model';
 
 export const hiringCopilotAgent = new Agent({
   id: 'hiring-copilot-agent',
@@ -14,7 +15,7 @@ When given a candidate's resume and a target job description:
 Keep your evaluation highly structured, professional, and objective.
 
 You have access to the fetchWebPageTool to gather public candidate profiles or job description rules from links when provided.`,
-  model: 'google/gemini-2.5-flash',
+  model: agentModel,
   memory: new Memory(),
   tools: { fetchWebPageTool },
 });

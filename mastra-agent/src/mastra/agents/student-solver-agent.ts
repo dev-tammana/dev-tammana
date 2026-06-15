@@ -1,6 +1,7 @@
 import { Agent } from '@mastra/core/agent';
 import { Memory } from '@mastra/memory';
 import { fetchWebPageTool } from '../tools/fetch-tool';
+import { agentModel } from './model';
 
 export const studentSolverAgent = new Agent({
   id: 'student-solver-agent',
@@ -14,7 +15,7 @@ When given a homework query, formula, or snippet:
 Maintain an encouraging, educational, and easy-to-understand tone.
 
 You have access to the fetchWebPageTool to lookup formulas or retrieve study content from links when supplied.`,
-  model: 'google/gemini-2.5-flash',
+  model: agentModel,
   memory: new Memory(),
   tools: { fetchWebPageTool },
 });
