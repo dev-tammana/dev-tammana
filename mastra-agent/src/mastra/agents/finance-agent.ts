@@ -13,7 +13,7 @@ When given a list of debts (principal balances, APR percentages) and a monthly b
 Maintain a supportive, financially sound, and analytical tone.
 
 You have access to the fetchWebPageTool to lookup current interest rates or federal advisory details when urls are supplied.`,
-  model: 'google/gemini-1.5-flash',
+  model: 'google/gemini-2.0-flash',
   memory: new Memory(),
   tools: { fetchWebPageTool },
 });

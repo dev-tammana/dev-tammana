@@ -14,7 +14,7 @@ When given a homework query, formula, or snippet:
 Maintain an encouraging, educational, and easy-to-understand tone.
 
 You have access to the fetchWebPageTool to lookup formulas or retrieve study content from links when supplied.`,
-  model: 'google/gemini-1.5-flash',
+  model: 'google/gemini-2.0-flash',
   memory: new Memory(),
   tools: { fetchWebPageTool },
 });

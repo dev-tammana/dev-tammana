@@ -14,7 +14,7 @@ When given a candidate's resume and a target job description:
 Keep your evaluation highly structured, professional, and objective.
 
 You have access to the fetchWebPageTool to gather public candidate profiles or job description rules from links when provided.`,
-  model: 'google/gemini-1.5-flash',
+  model: 'google/gemini-2.0-flash',
   memory: new Memory(),
   tools: { fetchWebPageTool },
 });
