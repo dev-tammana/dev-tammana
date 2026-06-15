@@ -1,9 +1,7 @@
-import { createOpenAI } from '@ai-sdk/openai';
+import { createGroq } from '@ai-sdk/groq';
 
-const githubModels = createOpenAI({
-  baseURL: 'https://models.inference.ai.azure.com',
-  apiKey: process.env.GITHUB_TOKEN,
-  compatibility: 'compatible',
+const groq = createGroq({
+  apiKey: process.env.GROQ_API_KEY,
 });
 
-export const AGENT_MODEL = githubModels.chat('gpt-4o-mini');
+export const AGENT_MODEL = groq('llama-3.3-70b-versatile');
