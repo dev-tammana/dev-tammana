@@ -1,5 +1,4 @@
 import { Agent } from '@mastra/core/agent';
-import { Memory } from '@mastra/memory';
 import { githubReadFileTool, githubWriteFileTool, githubListFilesTool, githubCheckCIStatusTool } from '../tools/git-api-tools';
 import { AGENT_MODEL } from './config';
 
@@ -42,6 +41,5 @@ Ensure package isolation, hexagonal architecture, OTEL tracing, and test coverag
 When you write files, use github-write-file which automatically creates commits and stages files directly on GitHub.
 Always verify that CI/CD runs are checked using github-check-ci-status to monitor tests.`,
   model: AGENT_MODEL,
-  memory: new Memory(),
   tools: { githubReadFileTool, githubWriteFileTool, githubListFilesTool, githubCheckCIStatusTool },
 });

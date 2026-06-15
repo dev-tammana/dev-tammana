@@ -1,5 +1,4 @@
 import { Agent } from '@mastra/core/agent';
-import { Memory } from '@mastra/memory';
 import { githubReadFileTool, githubListFilesTool, githubCheckCIStatusTool } from '../tools/git-api-tools';
 import { AGENT_MODEL } from './config';
 
@@ -39,6 +38,5 @@ VERDICT: APPROVED | CHANGES_REQUIRED
 Short paragraph with overall assessment.
 \`\`\``,
   model: AGENT_MODEL,
-  memory: new Memory(),
   tools: { githubReadFileTool, githubListFilesTool, githubCheckCIStatusTool },
 });

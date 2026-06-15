@@ -1,5 +1,4 @@
 import { Agent } from '@mastra/core/agent';
-import { Memory } from '@mastra/memory';
 import { githubReadFileTool, githubListFilesTool, githubCheckCIStatusTool } from '../tools/git-api-tools';
 import { AGENT_MODEL } from './config';
 
@@ -59,6 +58,5 @@ COMPLIANCE STATUS: COMPLIANT | NON-COMPLIANT | PARTIAL
 Overall compliance verdict and risk assessment.
 \`\`\``,
   model: AGENT_MODEL,
-  memory: new Memory(),
   tools: { githubReadFileTool, githubListFilesTool, githubCheckCIStatusTool },
 });

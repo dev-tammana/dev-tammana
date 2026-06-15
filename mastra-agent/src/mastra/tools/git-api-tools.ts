@@ -5,8 +5,8 @@ import { z } from 'zod';
 const getGitConfig = () => {
   return {
     token: process.env.GITHUB_TOKEN || process.env.GOOGLE_API_KEY || '', // Fallback or user placeholder
-    owner: process.env.GIT_REPO_OWNER || 'dev-tammana',
-    repo: process.env.GIT_REPO_NAME || 'profile',
+    owner: process.env.GIT_REPO_OWNER || 'Chief-Strategist-J',
+    repo: process.env.GIT_REPO_NAME || 'llm-observability-platform',
     defaultBranch: process.env.GIT_DEFAULT_BRANCH || 'main',
   };
 };
@@ -186,11 +186,18 @@ export const githubCheckCIStatusTool = createTool({
       }
 
       const latestRun = data.workflow_runs[0];
+      const simplifiedRuns = data.workflow_runs.map((run: any) => ({
+        id: run.id,
+        name: run.name,
+        status: run.status,
+        conclusion: run.conclusion,
+        html_url: run.html_url,
+      }));
       return {
         success: true,
         status: latestRun.status, // e.g. completed, in_progress
         conclusion: latestRun.conclusion, // e.g. success, failure, cancelled
-        runs: data.workflow_runs,
+        runs: simplifiedRuns,
       };
     } catch (error) {
       return { success: false, error: (error as Error).message };
